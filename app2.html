@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style2.css">
+<script src="http://d3js.org/d3.v3.js">
+
+</script>
+</head>
+<body>
+
+
+<script>
+var svg = d3.select('body').append('svg').attr({
+		width: 1000,
+		height: 1000
+	});
+
+
+var arr = [];
+
+	for (var k = 0; k < 25; k++) {
+		d3.selectAll('rect')[0][k];
+		arr.push({
+				x: 0,
+				y:0,
+				width: '200px',
+				height: '200px',
+				rx: 0,
+				ry: 0
+		});
+	}
+
+	var squares2 = svg.selectAll('rect').data(arr);
+	squares2.enter().append('rect').each(function(d, i){
+	console.log('d ' + d + ', i == ' + i);
+	d3.select(this).attr({
+					x: function(d) {
+						console.log('d.x ' + d.x);
+						if (i < 5) {
+							return 200 * i;
+						}else if (i >= 5 && i < 10) {
+							return (i * 200) - 1000;
+						}else if (i >= 10 && i < 15) {
+							return (i * 200) - 2000;
+						}else if (i >= 15 && i < 20) {
+							return (i * 200) - 3000;
+						}else if (i >= 20 && i < 25) {
+							return (i * 200) - 4000;
+						}
+
+
+					},
+					y: function(d){
+						if (i < 5){
+							return 0;
+						}else if (i >= 5 && i < 10) {
+							return 200;
+						}else if (i >= 10 && i < 15) {
+							return 400;
+						}else if (i >= 15 && i < 20) {
+							return 600;
+						}else if (i >= 20 && i < 25) {
+							return 800;
+						}
+					},
+					width: '200px',
+					height: '200px',
+					rx: 0,
+					ry: 0,
+					fill: function(d){
+						console.log(d.x, i + ' - i');
+						console.log(parseInt(i));
+						if (i == 29) {
+							console.log(parseInt(i));
+							return 'black';
+						}else if (i % 2) {
+							return 'white';
+						}else {
+							return 'black';
+						}
+					}
+
+				})
+				
+	});
+
+
+
+
+
+</script>
+</body>
+</html>
